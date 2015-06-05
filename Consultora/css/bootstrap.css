@@ -4842,7 +4842,7 @@ a.badge:focus {
   padding: 30px 15px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-image: #fff url(../img/datawall.jpg) center;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4859,9 +4859,12 @@ a.badge:focus {
 .container .jumbotron,
 .container-fluid .jumbotron {
   border-radius: 6px;
+
 }
 .jumbotron .container {
   max-width: 100%;
+
+
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
@@ -4871,6 +4874,7 @@ a.badge:focus {
   .container-fluid .jumbotron {
     padding-right: 60px;
     padding-left: 60px;
+   
   }
   .jumbotron h1,
   .jumbotron .h1 {
