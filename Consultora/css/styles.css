@@ -19,3 +19,41 @@ margin-bottom: 80px;
 		background-color: #D9D9D9;
 		
 }
+
+.retraso-1
+{
+	-webkit-animation-delay:1s;
+	-mozanimation-delay:1s;
+	animation-delay:1s;
+}
+
+.retraso-5
+{
+	-webkit-animation-delay:.5s;
+	-mozanimation-delay:.5s;
+	animation-delay:.5s;
+}
+
+
+.retraso-2
+{
+	-webkit-animation-delay:2s;
+	-mozanimation-delay:2s;
+	animation-delay:2s;
+}
+
+
+.retraso-3
+{
+	-webkit-animation-delay:3s;
+	-mozanimation-delay:3s;
+	animation-delay:3s;
+}
+
+
+.retraso-4
+{
+	-webkit-animation-delay:4s;
+	-mozanimation-delay:4s;
+	animation-delay:4s;
+}
