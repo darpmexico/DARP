@@ -1,0 +1,42 @@
+------------Funciones------------
+
+
+--1
+
+Select * from empleado where id_empleado > 15 and
+( apellido_materno like '%ez' or apellido_paterno like '%ez' or nombre = 'Manuel'or
+ nombre = 'Alberto'or nombre = 'Martha Elena'or nombre = 'Fernanda')
+
+
+--4 
+Select * from empleado where edad < 40 and nombre <> 'Carlos' and porcentaje_comision is null and (nombre like '%ez%' or nombre like '%s') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------Joins-----------
+
+1)
+
+SELECT e.nombre as empleado ,MAX(e.sueldo) as sueldo, e.sexo as sexo , d.nombre as departamento from empleado e inner join departamento d on (d.id_departamento = e.id_departamento)
+
+where d.nombre like 'a%' or d.nombre like 'r%'
+
+group by e.sexo,e.nombre,d.nombre,e.sueldo
+
+having MAX(e.sueldo)> 7000
+
