@@ -1,14 +1,42 @@
-------------Funciones------------
-
-
+---Funciones--
 --1
-
 Select * from empleado where id_empleado > 15 and
 ( apellido_materno like '%ez' or apellido_paterno like '%ez' or nombre = 'Manuel'or
  nombre = 'Alberto'or nombre = 'Martha Elena'or nombre = 'Fernanda')
 
 
---4 
+
+ --2
+ SELECT nombre  
+ FROM cargo  
+ WHERE id_cargo <> 1 
+ AND nombre <> 'Director' 
+ OR id_cargo = 3  
+ AND (nombre LIKE '%a__'  OR nombre LIKE '%o_')  
+ OR nombre LIKE '____u%'
+ 
+ --3 INCOMPLETA 
+ 
+ SELECT * 
+ FROM departamento 
+ WHERE  id_departamento <> 6 
+ AND (nombre NOT LIKE ('%s')    
+ OR nombre LIKE ('%ñ%') 
+ OR nombre LIKE('% %')) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ --4 
 Select * from empleado where edad < 40 and nombre <> 'Carlos' and porcentaje_comision is null and (nombre like '%ez%' or nombre like '%s') 
 
 
@@ -19,18 +47,9 @@ Select * from empleado where edad < 40 and nombre <> 'Carlos' and porcentaje_com
 
 
 
+--JOINS
 
-
-
-
-
-
-
-
-
-------------------Joins-----------
-
-1)
+ --1 
 
 SELECT e.nombre as empleado ,MAX(e.sueldo) as sueldo, e.sexo as sexo , d.nombre as departamento from empleado e inner join departamento d on (d.id_departamento = e.id_departamento)
 
@@ -40,3 +59,32 @@ group by e.sexo,e.nombre,d.nombre,e.sueldo
 
 having MAX(e.sueldo)> 7000
 
+
+
+--2
+
+SELECT e.edad+10 as edad, CASE WHEN e.sexo ='H' THEN 'Masculino' ELSE 'Mujer' end AS sexo, e.nombre+' '+e.apellido_paterno +' '+ e.apellido_materno AS 'nombre completo'
+FROM empleado AS e LEFT JOIN departamento AS d
+ON e.id_departamento=d.id_departamento
+WHERE e.id_departamento IS NULL
+AND (e.nombre NOT LIKE ('%s%')
+AND e.apellido_paterno NOT LIKE ('%s%')
+AND e.apellido_materno NOT LIKE ('%s%'))
+
+--3
+
+--SELECT LOWER (SUBSTRING(c.nombre,1,(LEN(c.NOMBRE)/2)-1)) + UPPER (SUBSTRING(c.nombre,LEN(c.NOMBRE)/2,(LEN(c.NOMBRE)/2)+2)) AS nombre_cargo, COUNT(c.nombre) AS no_empleados
+--	FROM cargo AS c LEFT JOIN empleado AS e
+--	ON c.id_cargo=e.id_cargo
+--	WHERE e.fecha_contratacion NOT BETWEEN '2000-01-01' AND '2000-12-31'
+--	GROUP BY c.nombre, e.sueldo
+--	HAVING AVG(e.sueldo) < e.sueldo
+
+--select fecha_contratacion from empleado
+--WHERE fecha_contratacion NOT BETWEEN '2000-01-01' AND '2000-12-31'
+	
+--4
+
+SELECT nombre+' '+apellido_paterno +' '+ apellido_materno as NOMBRE, 
+	LOWER(SUBSTRING (apellido_paterno, 1, 3)+SUBSTRING (apellido_materno, 1, 1)+ SUBSTRING (nombre, LEN(nombre)-2, 3) )+  '@dgsca.com.mx' AS correo_electronico
+FROM empleado
