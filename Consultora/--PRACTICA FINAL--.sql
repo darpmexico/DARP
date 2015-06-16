@@ -357,3 +357,46 @@ SELECT MIN(sueldo)'Sueldo Minimo' from puestos
 
 SELECT COUNT(*)'Total de Empleados' FROM empleados
 
+--l. ¿Cuántos empleados existen con la letra ‘A’ como primera letra de su nombre?
+
+SELECT COUNT(*)'Total de Empleados' FROM empleados
+WHERE nombre like 'a%'
+
+
+--m. Agrupe los cursos por el campo tema y cuente cuantos cursos 
+--hay para cada una de las categorías existentes.
+
+Select COUNT(curso) AS CURSOS, Tema from cat_cursos
+GROUP by Tema
+
+--n. Agrupe los cursos por el año en que están programados y 
+--cuente cuantos hay para cada uno de ellos
+
+
+
+SELECT COUNT(id_curso)
+Cursos,YEAR(fecha_curso) Año FROM cal_cursos
+
+GROUP BY YEAR(fecha_curso)
+
+--o. Agrupe los empleados y verifique cuántos hay por departamento
+
+SELECT COUNT(clave) Empleados,clave_depto  AS Departamento FROM empleados
+GROUP BY clave_depto
+
+--p. Agrupe los empleados y verifique cuantos hay por puesto
+
+SELECT COUNT(clave) Empleados,clave_puesto  AS PUESTO FROM empleados
+GROUP BY clave_puesto
+
+--SUBCONSULTAS
+
+--a. Seleccione los cursos cuyo sea mayor al promedio
+SELECT curso From cat_cursos WHERE COSTO > (SELECT AVG(COSTO) FROM cat_cursos) 
+
+--b. Seleccione los cursos cuyo precio sea menor al promedio
+
+SELECT curso From cat_cursos WHERE COSTO < (SELECT AVG(COSTO) FROM cat_cursos) 
+
+--c. Seleccione el nombre del puesto con el sueldo más bajo
+
